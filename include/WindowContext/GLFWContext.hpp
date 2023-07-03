@@ -21,10 +21,7 @@ class GLFWContext : public IWindowContext {
     GLFWContext operator=(const GLFWContext&) = delete;
     std::tuple<int, int> get_dimensions_();
 public:
-    static IWindowContext& get() {
-        static GLFWContext i;
-        return i;
-    }
+    static IWindowContext& get();
 
     void set_listener(IKeyInputListener* il) override;
     void set_listener(ICursorPositionListener* pl) override;

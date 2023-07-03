@@ -171,6 +171,11 @@ std::tuple<int, int> GLFWContext::get_dimensions_() {
     return {w, h};
 }
 
+IWindowContext &GLFWContext::get() {
+    static GLFWContext i;
+    return i;
+}
+
 std::tuple<int, int> GLFWContext::get_dimensions() {
     return get_dimensions_();
 }
