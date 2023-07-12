@@ -23,12 +23,21 @@ class GLFWContext : public IWindowContext {
 public:
     static IWindowContext& get();
 
-    void set_listener(IKeyInputListener* il) override;
-    void set_listener(ICursorPositionListener* pl) override;
-    void set_listener(IMouseMovementListener* ml) override;
-    void set_listener(IMouseInputListener* il) override;
-    void set_listener(IWindowResizeListener* il) override;
-    void set_listener(ICharacterListener* cl) override;
+    void set_key_input_listener(IKeyInputListener* il) override;
+    void set_cursor_position_listener(ICursorPositionListener* pl) override;
+    void set_mouse_movement_listener(IMouseMovementListener* ml) override;
+    void set_mouse_input_listener(IMouseInputListener* il) override;
+    void set_window_resized_listener(IWindowResizeListener* il) override;
+    void set_character_listener(ICharacterInputListener* cl) override;
+    void set_scroll_input_listener(IScrollIuputListener *sl) override;
+
+    void set_key_input_callback(std::function<void(int, int, int)>) override;
+    void set_cursor_position_callback(std::function<void(double, double)>) override;
+    void set_mouse_movement_callback(std::function<void(double, double)>) override;
+    void set_mouse_input_callback(std::function<void(int, int, int)>) override;
+    void set_window_resized_callback(std::function<void(int, int)>) override;
+    void set_character_callback(std::function<void(uint32_t)>) override;
+    void set_scroll_input_callback(std::function<void (double, double)>) override;
 
     void set_cursor_mode(bool val) override;
     void set_sticky_keys(bool val) override;

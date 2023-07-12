@@ -22,7 +22,7 @@ public:
     }
 };
 
-class TextEdit : public ICharacterListener {
+class TextEdit : public ICharacterInputListener {
     std::list<uint32_t> characters;
     std::list<uint32_t>::iterator cursor{characters.end()};
     std::atomic_bool active{false};
@@ -194,10 +194,10 @@ int main()
     MouseInputListener mml;
 
     auto& input = io::GLFWContext::get();
-    input.set_listener(&input_listener_ui);
-    input.set_listener(&cpl);
-    input.set_listener(&mml);
-    input.set_listener(&te);
+    input.set_key_input_listener(&input_listener_ui);
+    input.set_cursor_position_listener(&cpl);
+    input.set_mouse_movement_listener(&mml);
+    input.set_character_listener(&te);
 
     bool cursor = false;
     input_listener_go.add_callback(GLFW_KEY_T, GLFW_PRESS, 0, [&input, &cursor](){cursor = !cursor; input.set_cursor_mode(cursor);});
